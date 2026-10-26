@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+
+
+
+
+
+
+
+Sitemap: https://www.hblbodegasylogistica.cl/sitemap.xml
+
+Sitemap: https://www.hblbodegasylogistica.cl/sitemap.xml
+
+Sitemap: https://www.hblbodegasylogistica.cl/sitemap.xml

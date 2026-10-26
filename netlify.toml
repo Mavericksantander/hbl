@@ -1,0 +1,7 @@
+[build]
+  command = "sh build.sh"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+  SITE_URL = "https://www.hblbodegasylogistica.cl"
