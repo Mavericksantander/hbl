@@ -4028,3 +4028,65 @@ html[data-multi-page="hbl-pages"] main > section:first-child:not(.hero) {
     padding-top: 250px;
   }
 }
+
+@media (max-width: 800px) {
+  html[data-multi-page="hbl-pages"] .service-card {
+    min-height: 0;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 4px;
+    background: rgba(10, 48, 81, 0.78);
+    perspective: none;
+  }
+
+  html[data-multi-page="hbl-pages"] .service-card-content,
+  html[data-multi-page="hbl-pages"] .service-card:hover .service-card-content,
+  html[data-multi-page="hbl-pages"] .service-card:focus-visible .service-card-content {
+    display: flex;
+    height: auto;
+    min-height: 0;
+    flex-direction: column;
+    transform: none;
+    transition: none;
+    transform-style: flat;
+  }
+
+  html[data-multi-page="hbl-pages"] .service-card-front,
+  html[data-multi-page="hbl-pages"] .service-card-back {
+    position: relative;
+    inset: auto;
+    min-height: 0;
+    flex: none;
+    transform: none;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    backface-visibility: visible;
+    -webkit-backface-visibility: visible;
+  }
+
+  html[data-multi-page="hbl-pages"] .service-card-front {
+    display: block;
+    padding: 20px 20px 0;
+    text-align: left;
+  }
+
+  html[data-multi-page="hbl-pages"] .service-card-front h3 {
+    font-size: 28px;
+  }
+
+  html[data-multi-page="hbl-pages"] .service-card-back-content {
+    position: relative;
+    inset: auto;
+    min-height: 0;
+    padding: 10px 20px 20px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    text-align: left;
+  }
+
+  html[data-multi-page="hbl-pages"] .service-card-back p {
+    margin: 0;
+  }
+}
