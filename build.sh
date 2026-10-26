@@ -75,6 +75,9 @@ const pages = [
   "tecnologia.html",
   "contacto.html"
 ];
+const pageUrl = (file) => file === "index.html"
+  ? `${siteUrl}/hbl/`
+  : `${siteUrl}/hbl/${file.replace(/\.html$/, "")}`;
 const metadataTags = [
   /  <link rel="canonical" href="[^"]*">\n/g,
   /  <meta property="og:url" content="[^"]*">\n/g,
@@ -91,10 +94,10 @@ for (const file of pages) {
   html = html.replace(/  <meta name="twitter:card" content="[^"]*">\n/, "");
   for (const pattern of metadataTags) html = html.replace(pattern, "");
 
-  const pageUrl = `${siteUrl}/HBL/${file}`;
+  const canonicalUrl = pageUrl(file);
   const metadata = [
-    `  <link rel="canonical" href="${pageUrl}">`,
-    `  <meta property="og:url" content="${pageUrl}">`,
+    `  <link rel="canonical" href="${canonicalUrl}">`,
+    `  <meta property="og:url" content="${canonicalUrl}">`,
     `  <meta property="og:image" content="${siteUrl}/images/hero.jpeg">`,
     '  <meta property="og:image:alt" content="Imagen principal de las operaciones logísticas de Hansa">',
     '  <meta name="twitter:card" content="summary_large_image">',
@@ -113,7 +116,7 @@ for (const file of pages) {
 const sitemap = [
   '<?xml version="1.0" encoding="UTF-8"?>',
   '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-  ...pages.map((file) => `  <url><loc>${siteUrl}/HBL/${file}</loc></url>`),
+  ...pages.map((file) => `  <url><loc>${pageUrl(file)}</loc></url>`),
   "</urlset>",
   ""
 ].join("\n");
