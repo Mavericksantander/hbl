@@ -4068,7 +4068,7 @@ html[data-multi-page="hbl-pages"] main > section:first-child:not(.hero) {
   html[data-multi-page="hbl-pages"] .service-card-front {
     display: block;
     padding: 20px 20px 0;
-    text-align: left;
+    text-align: center;
   }
 
   html[data-multi-page="hbl-pages"] .service-card-front h3 {
@@ -4083,7 +4083,7 @@ html[data-multi-page="hbl-pages"] main > section:first-child:not(.hero) {
     border: 0;
     border-radius: 0;
     background: transparent;
-    text-align: left;
+    text-align: center;
   }
 
   html[data-multi-page="hbl-pages"] .service-card-back p {
