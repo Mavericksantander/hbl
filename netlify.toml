@@ -4,4 +4,4 @@
 
 [build.environment]
   NODE_VERSION = "20"
-  SITE_URL = "https://www.hblbodegasylogistica.cl"
+  SITE_URL = "https://hblbodegasylogistica.cl"

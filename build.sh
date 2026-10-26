@@ -168,8 +168,17 @@ await unlink(path.join(output, "sitemap.xml")).catch((error) => {
 NODE
 fi
 
-if [ -n "$SITE_URL" ]; then
-  printf '\nSitemap: %s/sitemap.xml\n' "$SITE_URL" >> "$OUTPUT/robots.txt"
-fi
+OUTPUT="$OUTPUT" SITE_URL="$SITE_URL" node --input-type=module <<'NODE'
+import { readFile, writeFile } from "node:fs/promises";
+import path from "node:path";
+
+const output = process.env.OUTPUT;
+const siteUrl = process.env.SITE_URL;
+const robotsPath = path.join(output, "robots.txt");
+let robots = await readFile(robotsPath, "utf8");
+robots = robots.replace(/^Sitemap:.*\r?\n?/gm, "").trimEnd();
+if (siteUrl) robots += `\n\nSitemap: ${siteUrl}/sitemap.xml`;
+await writeFile(robotsPath, `${robots}\n`);
+NODE
 
 printf 'Validated HBL deployment files in %s\n' "$OUTPUT"
