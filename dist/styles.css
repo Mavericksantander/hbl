@@ -4090,3 +4090,88 @@ html[data-multi-page="hbl-pages"] main > section:first-child:not(.hero) {
     margin: 0;
   }
 }
+
+/* =========================
+   AJUSTES RONDA 1
+========================= */
+
+/* Centros: descripción en párrafos */
+.operations-description p + p {
+  margin-top: 16px;
+}
+
+/* Tecnología: 3 tarjetas tras mover "Soporte y calidad" */
+@media (max-width: 1020px) and (min-width: 561px) {
+  .technology-grid > .technology-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Alianzas: tarjeta ancha "Soporte y calidad" */
+html[data-multi-page="hbl"] .alliance-card.alliance-card-quality,
+.alliance-card.alliance-card-quality {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  align-items: center;
+  gap: 32px;
+  text-align: left;
+}
+
+.alliance-quality-copy h3 {
+  margin-bottom: 8px;
+}
+
+.alliance-quality-copy h4 {
+  margin: 18px 0 6px;
+  color: var(--hansa-dark);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.alliance-quality-copy p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.alliance-quality-standards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.alliance-quality-standards li {
+  padding: 5px 10px;
+  border: 1px solid #e3e8ed;
+  border-radius: 4px;
+  color: var(--hansa-dark);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.alliance-quality-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+}
+
+.alliance-quality-logo p {
+  color: var(--hansa-dark);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  html[data-multi-page="hbl"] .alliance-card.alliance-card-quality,
+  .alliance-card.alliance-card-quality {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 24px;
+  }
+}
