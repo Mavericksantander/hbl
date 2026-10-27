@@ -4143,6 +4143,17 @@ html[data-multi-page="hbl-pages"] main > section:first-child:not(.hero) {
   text-wrap: balance;
 }
 
+/* Cards chicas: logo y título alineados arriba, misma altura */
+.alliance-tech-card .technology-card-content {
+  justify-content: flex-start;
+  gap: 18px;
+}
+
+.alliance-tech-card .alliance-tech-description {
+  max-width: 380px;
+  margin: -6px auto 0;
+}
+
 /* Certificado TÜV con QR: tamaño escaneable */
 .alliances-tech-grid {
   max-width: 1100px;
