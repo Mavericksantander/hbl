@@ -134,6 +134,18 @@
 
   <main id="contenido">
 <section class="hero" id="hero">
+    <div class="hero-video" aria-hidden="true">
+      <video
+        class="hero-video-media"
+        muted
+        loop
+        playsinline
+        preload="none"
+        poster="../images/hero-video-poster.webp"
+        data-src="../images/hero-video.mp4"
+        data-src-webm="../images/hero-video.webm"
+      ></video>
+    </div>
     <div class="hero-animated-gradient" aria-hidden="true">
       <canvas></canvas>
     </div>
@@ -613,5 +625,30 @@
     })();
   </script>
 
+    <script>
+    (() => {
+      const video = document.querySelector(".hero-video-media");
+      if (!video) return;
+      const desktop = window.matchMedia("(min-width: 801px)");
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const sync = () => {
+        if (desktop.matches && !reduce.matches) {
+          if (!video.src) {
+            video.src = video.canPlayType("video/mp4; codecs=\"avc1.640028\"")
+              ? video.dataset.src
+              : video.dataset.srcWebm;
+            video.load();
+          }
+          video.autoplay = true;
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      };
+      sync();
+      desktop.addEventListener("change", sync);
+      reduce.addEventListener("change", sync);
+    })();
+    </script>
 </body>
 </html>
