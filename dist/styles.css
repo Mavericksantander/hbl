@@ -4260,3 +4260,13 @@ nav:has(> .nav-brand) {
     height: 46px;
   }
 }
+
+/* Móvil: el texto HANSA azul marino no se lee sobre fondos oscuros
+   (hero del inicio y menú desplegable), así que se oculta el logo. */
+@media (max-width: 800px) {
+  .nav-brand,
+  .mobile-brand,
+  nav > .nav-brand {
+    display: none;
+  }
+}
