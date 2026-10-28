@@ -4311,7 +4311,58 @@ nav:has(> .nav-brand) {
   }
 }
 
-/* El degradado animado queda como acento sobre el video */
+/* Sin ondas azules: el video queda limpio con un overlay sutil */
 .hero:has(.hero-video) .hero-animated-gradient {
-  opacity: 0.32;
+  display: none;
+}
+
+.hero-video::after {
+  background:
+    linear-gradient(180deg, rgba(4, 17, 30, 0.45) 0%, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0.55) 100%);
+}
+
+/* =========================
+   NAV TRANSLÚCIDA
+   - Sobre el hero con video: azul marino casi transparente + blur suave.
+   - Al hacer scroll (header.is-scrolled) o en páginas sin hero oscuro
+     (fondo claro), se vuelve más opaca para mantener legibilidad.
+========================= */
+
+@media (min-width: 801px) {
+  html[data-multi-page] nav,
+  nav {
+    border-color: rgba(255, 255, 255, 0.14);
+    background: rgba(4, 17, 30, 0.22);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    -webkit-backdrop-filter: blur(10px) saturate(130%);
+    backdrop-filter: blur(10px) saturate(130%);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  nav .nav-links a,
+  nav a {
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
+  }
+
+  body:not(:has(.hero)) nav,
+  header.is-scrolled nav {
+    background: rgba(4, 17, 30, 0.8);
+    box-shadow: 0 14px 38px rgba(4, 17, 30, 0.22);
+    -webkit-backdrop-filter: blur(14px) saturate(130%);
+    backdrop-filter: blur(14px) saturate(130%);
+  }
+}
+
+@media (max-width: 800px) {
+  .mobile-nav-toggle {
+    background: rgba(4, 17, 30, 0.3);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    transition: background-color 0.3s ease;
+  }
+
+  body:not(:has(.hero)) .mobile-nav-toggle,
+  header.is-scrolled .mobile-nav-toggle {
+    background: rgba(4, 17, 30, 0.85);
+  }
 }

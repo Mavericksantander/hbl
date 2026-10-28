@@ -146,9 +146,6 @@
         data-src-webm="../images/hero-video.webm"
       ></video>
     </div>
-    <div class="hero-animated-gradient" aria-hidden="true">
-      <canvas></canvas>
-    </div>
 
     <div class="hero-content">
 
@@ -310,7 +307,6 @@
 
   </footer>
 
-  <script src="../animated-gradient.js"></script>
   <script>
     document.querySelector("#current-year").textContent = new Date().getFullYear();
 
@@ -650,5 +646,14 @@
       reduce.addEventListener("change", sync);
     })();
     </script>
+  <script>
+    (() => {
+      const header = document.querySelector("header");
+      if (!header) return;
+      const update = () => header.classList.toggle("is-scrolled", window.scrollY > 40);
+      window.addEventListener("scroll", update, { passive: true });
+      update();
+    })();
+  </script>
 </body>
 </html>

@@ -629,5 +629,14 @@
     })();
   </script>
 
+  <script>
+    (() => {
+      const header = document.querySelector("header");
+      if (!header) return;
+      const update = () => header.classList.toggle("is-scrolled", window.scrollY > 40);
+      window.addEventListener("scroll", update, { passive: true });
+      update();
+    })();
+  </script>
 </body>
 </html>
