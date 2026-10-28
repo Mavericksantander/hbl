@@ -1261,7 +1261,7 @@ nav {
       rgba(0, 0, 0, 0.15) 0%,
       rgba(0, 0, 0, 0.68) 100%
     ),
-    url("images/hansabodega.jpg") center / cover no-repeat;
+    url("images/bodega-antofagasta-aerea.webp") 62% 40% / cover no-repeat;
 }
 
 .operations-image::before {
