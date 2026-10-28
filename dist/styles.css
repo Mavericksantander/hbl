@@ -4188,3 +4188,76 @@ html[data-multi-page="hbl-pages"] main > section:first-child:not(.hero) {
     grid-template-columns: 1fr;
   }
 }
+
+/* =========================
+   LOGO EN NAVEGACIÓN
+========================= */
+
+nav {
+  position: relative;
+}
+
+.nav-brand {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.94);
+  transition: background-color 0.2s ease;
+}
+
+.nav-brand:hover {
+  background: #ffffff;
+}
+
+.nav-brand img {
+  display: block;
+  width: auto;
+  height: 40px;
+}
+
+nav > .nav-brand {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  transform: translateY(-50%);
+}
+
+nav:has(> .nav-brand) {
+  padding-left: 96px;
+  padding-right: 96px;
+}
+
+.mobile-brand {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  nav > .nav-brand {
+    position: static;
+    align-self: flex-start;
+    transform: none;
+  }
+
+  nav:has(> .nav-brand) {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .mobile-brand {
+    position: fixed;
+    z-index: 20;
+    top: 12px;
+    left: 66px;
+    display: inline-flex;
+    height: 46px;
+    padding: 4px 8px;
+    box-shadow: 0 8px 24px rgba(4, 17, 30, 0.18);
+    pointer-events: auto;
+  }
+
+  .mobile-brand img {
+    height: 38px;
+  }
+}
