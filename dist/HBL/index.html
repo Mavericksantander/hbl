@@ -144,6 +144,8 @@
         poster="../images/hero-video-poster.webp"
         data-src="../images/hero-video.mp4"
         data-src-webm="../images/hero-video.webm"
+        data-src-mobile="../images/hero-video-mobile.mp4"
+        autoplay
       ></video>
     </div>
 
@@ -627,20 +629,40 @@
       if (!video) return;
       const desktop = window.matchMedia("(min-width: 801px)");
       const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
-      const sync = () => {
-        if (desktop.matches && !reduce.matches) {
-          if (!video.src) {
-            video.src = video.canPlayType("video/mp4; codecs=\"avc1.640028\"")
-              ? video.dataset.src
-              : video.dataset.srcWebm;
-            video.load();
-          }
-          video.autoplay = true;
-          video.play().catch(() => {});
-        } else {
-          video.pause();
-        }
+      video.muted = true;
+      video.defaultMuted = true;
+      video.playsInline = true;
+      video.setAttribute("muted", "");
+      video.setAttribute("playsinline", "");
+      video.setAttribute("webkit-playsinline", "");
+      let current = "";
+      const pick = () => {
+        if (!desktop.matches) return video.dataset.srcMobile;
+        return video.canPlayType("video/mp4; codecs=\"avc1.640028\"")
+          ? video.dataset.src
+          : video.dataset.srcWebm;
       };
+      const sync = () => {
+        if (reduce.matches) {
+          video.pause();
+          if (current) {
+            video.removeAttribute("src");
+            video.load();
+            current = "";
+          }
+          return;
+        }
+        const next = pick();
+        if (next !== current) {
+          current = next;
+          video.src = next;
+          video.load();
+        }
+        video.play().catch(() => {});
+      };
+      document.addEventListener("visibilitychange", () => {
+        if (!document.hidden && current) video.play().catch(() => {});
+      });
       sync();
       desktop.addEventListener("change", sync);
       reduce.addEventListener("change", sync);
