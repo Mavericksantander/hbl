@@ -4201,20 +4201,20 @@ nav {
   display: inline-flex;
   flex: 0 0 auto;
   align-items: center;
-  padding: 4px 8px;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.94);
-  transition: background-color 0.2s ease;
+  padding: 0;
+  border-radius: 8px;
+  background: transparent;
+  transition: opacity 0.2s ease;
 }
 
 .nav-brand:hover {
-  background: #ffffff;
+  opacity: 0.85;
 }
 
 .nav-brand img {
   display: block;
   width: auto;
-  height: 40px;
+  height: 48px;
 }
 
 nav > .nav-brand {
@@ -4252,12 +4252,11 @@ nav:has(> .nav-brand) {
     left: 66px;
     display: inline-flex;
     height: 46px;
-    padding: 4px 8px;
-    box-shadow: 0 8px 24px rgba(4, 17, 30, 0.18);
+    padding: 0;
     pointer-events: auto;
   }
 
   .mobile-brand img {
-    height: 38px;
+    height: 46px;
   }
 }
