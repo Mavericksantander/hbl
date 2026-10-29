@@ -4359,3 +4359,42 @@ nav:has(> .nav-brand) {
   }
 }
 
+
+/* Servicios: las 3 cards (antes flip) con el diseño de las cards de Alianzas */
+.services-tech-grid {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.service-tech-card .technology-card-content {
+  width: 100%;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 18px;
+  text-align: center;
+}
+
+.services-tech-grid .service-tech-card h3 {
+  margin: 0;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(145, 197, 250, 0.32);
+  font-size: clamp(26px, 2.4vw, 32px);
+  text-wrap: balance;
+}
+
+.services-tech-grid .service-tech-description {
+  max-width: 340px;
+  margin: 0 auto;
+  font-size: 15px;
+}
+
+@media (max-width: 560px) {
+  .services-tech-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .services-tech-grid .service-tech-card {
+    min-height: 0;
+  }
+}
