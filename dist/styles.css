@@ -858,7 +858,7 @@ nav {
 .clients-track {
   display: flex;
   width: max-content;
-  animation: clients-marquee 36s linear infinite;
+  animation: clients-marquee 24s linear infinite;
   will-change: transform;
 }
 
@@ -4396,5 +4396,115 @@ nav:has(> .nav-brand) {
 
   .services-tech-grid .service-tech-card {
     min-height: 0;
+  }
+}
+
+/* Servicios: las cards con diseño de Alianzas vuelven a girar (frente: título, reverso: texto) */
+.services-tech-grid .service-flip {
+  position: relative;
+  min-width: 0;
+  height: 280px;
+  perspective: 1000px;
+  border-radius: 20px;
+  outline: none;
+  cursor: pointer;
+}
+
+.services-tech-grid .service-flip:focus-visible {
+  outline: 2px solid #91c5fa;
+  outline-offset: 4px;
+}
+
+.service-flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 600ms ease;
+}
+
+@media (hover: hover) {
+  .service-flip:hover .service-flip-inner {
+    transform: rotateY(180deg);
+  }
+}
+
+.service-flip:focus-visible .service-flip-inner,
+.service-flip.is-flipped .service-flip-inner {
+  transform: rotateY(180deg);
+}
+
+/* Sin tilt en estas cards: el giro 3D lo maneja .service-flip-inner */
+.services-tech-grid .service-flip-face {
+  position: absolute;
+  inset: 0;
+  min-height: 0;
+  transform: none;
+  transform-style: flat;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.services-tech-grid .service-flip-face.service-flip-back {
+  transform: rotateY(180deg);
+}
+
+.services-tech-grid .service-flip-face .technology-card-content,
+.services-tech-grid .service-flip-face:hover .technology-card-content {
+  justify-content: center;
+  transform: none;
+}
+
+.services-tech-grid .service-flip-front h3 {
+  font-size: clamp(30px, 3vw, 40px);
+}
+
+.services-tech-grid .service-flip-back .service-tech-description {
+  font-size: 16px;
+}
+
+@media (max-width: 560px) {
+  .services-tech-grid .service-flip {
+    height: 230px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-flip-inner,
+  .service-flip:hover .service-flip-inner,
+  .service-flip:focus-visible .service-flip-inner,
+  .service-flip.is-flipped .service-flip-inner {
+    transform: none;
+    transition: none;
+  }
+
+  .services-tech-grid .service-flip-face,
+  .services-tech-grid .service-flip-face.service-flip-back {
+    transform: none;
+    transition: opacity 300ms ease;
+  }
+
+  .services-tech-grid .service-flip-back {
+    opacity: 0;
+  }
+
+  .service-flip:focus-visible .service-flip-front,
+  .service-flip.is-flipped .service-flip-front {
+    opacity: 0;
+  }
+
+  .service-flip:focus-visible .service-flip-back,
+  .service-flip.is-flipped .service-flip-back {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) and (hover: hover) {
+  .service-flip:hover .service-flip-front {
+    opacity: 0;
+  }
+
+  .service-flip:hover .service-flip-back {
+    opacity: 1;
   }
 }

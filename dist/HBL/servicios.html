@@ -155,31 +155,64 @@
 
 
       <ul class="technology-grid services-tech-grid">
-        <li class="technology-card service-tech-card">
-          <span class="technology-card-glow" aria-hidden="true"></span>
-          <span class="technology-card-lines" aria-hidden="true"></span>
-          <span class="technology-card-corners" aria-hidden="true"></span>
-          <div class="technology-card-content">
-            <h3>Almacenaje</h3>
-            <p class="service-tech-description">Bodegas y almacenamiento diseñados para las características de la carga y las necesidades de cada operación.</p>
+        <li class="service-flip" tabindex="0" aria-label="Almacenaje">
+          <div class="service-flip-inner">
+            <div class="technology-card service-tech-card service-flip-face service-flip-front">
+              <span class="technology-card-glow" aria-hidden="true"></span>
+              <span class="technology-card-lines" aria-hidden="true"></span>
+              <span class="technology-card-corners" aria-hidden="true"></span>
+              <div class="technology-card-content">
+                <h3>Almacenaje</h3>
+              </div>
+            </div>
+            <div class="technology-card service-tech-card service-flip-face service-flip-back">
+              <span class="technology-card-glow" aria-hidden="true"></span>
+              <span class="technology-card-lines" aria-hidden="true"></span>
+              <span class="technology-card-corners" aria-hidden="true"></span>
+              <div class="technology-card-content">
+                <p class="service-tech-description">Bodegas y almacenamiento diseñados para las características de la carga y las necesidades de cada operación.</p>
+              </div>
+            </div>
           </div>
         </li>
-        <li class="technology-card service-tech-card">
-          <span class="technology-card-glow" aria-hidden="true"></span>
-          <span class="technology-card-lines" aria-hidden="true"></span>
-          <span class="technology-card-corners" aria-hidden="true"></span>
-          <div class="technology-card-content">
-            <h3>Logística</h3>
-            <p class="service-tech-description">Coordinación de transporte terrestre y portuario, almacenaje temporal y seguimiento de las distintas etapas de la operación.</p>
+        <li class="service-flip" tabindex="0" aria-label="Logística">
+          <div class="service-flip-inner">
+            <div class="technology-card service-tech-card service-flip-face service-flip-front">
+              <span class="technology-card-glow" aria-hidden="true"></span>
+              <span class="technology-card-lines" aria-hidden="true"></span>
+              <span class="technology-card-corners" aria-hidden="true"></span>
+              <div class="technology-card-content">
+                <h3>Logística</h3>
+              </div>
+            </div>
+            <div class="technology-card service-tech-card service-flip-face service-flip-back">
+              <span class="technology-card-glow" aria-hidden="true"></span>
+              <span class="technology-card-lines" aria-hidden="true"></span>
+              <span class="technology-card-corners" aria-hidden="true"></span>
+              <div class="technology-card-content">
+                <p class="service-tech-description">Coordinación de transporte terrestre y portuario, almacenaje temporal y seguimiento de las distintas etapas de la operación.</p>
+              </div>
+            </div>
           </div>
         </li>
-        <li class="technology-card service-tech-card">
-          <span class="technology-card-glow" aria-hidden="true"></span>
-          <span class="technology-card-lines" aria-hidden="true"></span>
-          <span class="technology-card-corners" aria-hidden="true"></span>
-          <div class="technology-card-content">
-            <h3>Distribución</h3>
-            <p class="service-tech-description">Transporte interno, última milla portuaria, cross-docking y distribución rápida de cargas.</p>
+        <li class="service-flip" tabindex="0" aria-label="Distribución">
+          <div class="service-flip-inner">
+            <div class="technology-card service-tech-card service-flip-face service-flip-front">
+              <span class="technology-card-glow" aria-hidden="true"></span>
+              <span class="technology-card-lines" aria-hidden="true"></span>
+              <span class="technology-card-corners" aria-hidden="true"></span>
+              <div class="technology-card-content">
+                <h3>Distribución</h3>
+              </div>
+            </div>
+            <div class="technology-card service-tech-card service-flip-face service-flip-back">
+              <span class="technology-card-glow" aria-hidden="true"></span>
+              <span class="technology-card-lines" aria-hidden="true"></span>
+              <span class="technology-card-corners" aria-hidden="true"></span>
+              <div class="technology-card-content">
+                <p class="service-tech-description">Transporte interno, última milla portuaria, cross-docking y distribución rápida de cargas.</p>
+              </div>
+            </div>
           </div>
         </li>
       </ul>
@@ -643,7 +676,7 @@
     })();
 
     (() => {
-      const cards = document.querySelectorAll(".technology-card");
+      const cards = document.querySelectorAll(".technology-card:not(.service-flip-face)");
       const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
       if (reduceMotion.matches) return;
@@ -681,6 +714,23 @@
       const update = () => header.classList.toggle("is-scrolled", window.scrollY > 40);
       window.addEventListener("scroll", update, { passive: true });
       update();
+    })();
+    (() => {
+      // Servicios: tap para girar en pantallas táctiles (en escritorio gira con hover)
+      const flips = document.querySelectorAll(".service-flip");
+      flips.forEach((card) => {
+        card.addEventListener("click", () => {
+          if (window.matchMedia("(hover: hover)").matches) return;
+          const wasFlipped = card.classList.contains("is-flipped");
+          flips.forEach((other) => other.classList.remove("is-flipped"));
+          if (!wasFlipped) card.classList.add("is-flipped");
+        });
+        card.addEventListener("keydown", (event) => {
+          if (event.key !== "Enter" && event.key !== " ") return;
+          event.preventDefault();
+          card.classList.toggle("is-flipped");
+        });
+      });
     })();
   </script>
 </body>
